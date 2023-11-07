@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.calc{
+			background-color: white;
+			height: 370px;
+			width: 250px;
+			margin: 10% 40%;
+			border-radius: 50px;
+			padding: 20px;
+			box-shadow: 0px 0px 10px grey;
+		}
+		input{
+			width: 50px;
+			height: 50px;
+			background-color: black;
+			color: crimson;
+			border: none;
+			border-radius: 12px;
+			margin: 4px;
+			font-weight: bolder;
+			transition-duration: 0.5s;
+			
+
+		}
+		.operator{
+			background-color: orange;
+		}
+		.ac{
+			width: 112px;
+			margin-right: 5px;
+		}
+		.op{
+			height: 70px;
+			width: 230px;
+			background-color:transparent;
+			text-align: right;
+			color: black;
+			box-shadow: 0px 0px 2px grey;
+			font-size: 30px;
+		}
+		#allclear{
+			background-color: orange;
+		}
+		.operator:hover{
+			transform: scale(0.9);
+
+		}
+		input[type="button"]:hover{
+			transform: scale(0.9);
+			box-shadow: 0px 0px 5px orange;
+/*       		margin-right: 10px;*/
+/*               border-color: white;*/
+/*text-align: right;*/
+		}
+		.bd{
+            background-size: cover;
+            background-color: grey;
+            background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtbaX75lvvw5Q1Lnf1ESgFy8z0nEBECZn1W14LXdgtK1MwZFW5YJodsCyqD6SCKKfz8NI&usqp=CAU') ;
+
+		}
+		#clr{
+			background-color: orange;
+		}
+
+	</style>
+</head>
+<body class="bd">
+     <div class="calc">
+     	<form>
+     		<div>
+     			<input type="text" name="op" disabled class="op">
+     		</div>
+     		<div>
+     			<input type="button" value="AC" onclick="op.value=''" class="ac" id="allclear">
+     			<input type="button" value ="C" onclick="op.value=op.value.slice(0,-1)" id="clr" >
+     			<input type="button" value="%" onclick="op.value+='%'" class="operator">
+     		</div>
+     		<div>
+     			<input type="button" value="7" onclick="op.value+='7'" >
+     			<input type="button" value="8" onclick="op.value+='8'" >
+     			<input type="button" value="9" onclick="op.value+='9'" >
+     			<input type="button" value="+" onclick="op.value+='+'" class="operator">
+     		</div>
+     		<div>
+     			<input type="button" value="4" onclick="op.value+='4'" >
+     			<input type="button" value="5" onclick="op.value+='5'" >
+     			<input type="button" value="6" onclick="op.value+='6'" >
+     			<input type="button" value="-" onclick="op.value+='-'" class="operator">
+     		</div>
+     		<div>
+     			<input type="button" value="1" onclick="op.value+='1'" >
+     			<input type="button" value="2" onclick="op.value+='2'" >
+     			<input type="button" value="3" onclick="op.value+='3'" >
+     			<input type="button" value="x" onclick="op.value+='*'" class="operator">
+     		</div>
+     		<div>
+     			<input type="button" value="." onclick="op.value+='.'" >
+     			<input type="button" value="0" onclick="op.value+='0'" >
+     			<input type="button" value="=" onclick="op.value=eval(op.value)" >
+     			<input type="button" value="/" onclick="op.value+='/'" class="operator">
+     		</div>
+     	</form>
+     </div>
+     <script type="text/javascript">
+     let input = document.getElementById('inputBox');
+let buttons = document.querySelectorAll('button');
+
+let string = "";
+let arr = Array.from(buttons);
+arr.forEach(button => {
+    button.addEventListener('click', (e) =>{
+        if(e.target.innerHTML == '='){
+            string = eval(string);
+            input.value = string;
+        }
+
+        else if(e.target.innerHTML == 'AC'){
+            string = "";
+            input.value = string;
+        }
+        else if(e.target.innerHTML == ''){
+            string = string.substring(0, string.length-1);
+            input.value = string;
+        }
+        else{
+            string += e.target.innerHTML;
+            input.value = string;
+        }
+   }
+}
+        
+     </script>
+
+</body>
+</html>
